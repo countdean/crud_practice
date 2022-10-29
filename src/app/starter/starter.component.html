@@ -1,0 +1,101 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+    <!-- column -->
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- Row -->
+
+                <mat-card>
+                    <mat-card-content>
+                        <mat-card-title>Crud</mat-card-title>
+                        <form (ngSubmit)="onSubmit(addProduct.value)" #addProduct="ngForm">
+                            <mat-form-field appearance="fill">
+                              <mat-label>name</mat-label>
+                              <input matInput ngModel name="name" />
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                              <mat-label>image_link</mat-label>
+                              <input matInput ngModel name="image_link" />
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                              <mat-label>description</mat-label>
+                              <input matInput ngModel name="description" />
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                              <mat-label>price</mat-label>
+                              <input matInput ngModel name="price" />
+                            </mat-form-field>
+                            <button mat-raised-button type="submit" color="primary">Add</button>
+                          </form>
+                
+                    </mat-card-content>
+                </mat-card>
+                <br>
+                <div class="responsive-table">
+                    <mat-table #table [dataSource]="dataSource">
+                      <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef> ID. </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                      </ng-container>
+                      <!-- Position Column -->
+                      <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                      </ng-container>
+          
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="image_link">
+                        <mat-header-cell *matHeaderCellDef> Image LInk </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.image_link}} </mat-cell>
+                      </ng-container>
+          
+                      <!-- Weight Column -->
+                      <ng-container matColumnDef="description">
+                        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+                      </ng-container>
+          
+                      <!-- Symbol Column -->
+                      <ng-container matColumnDef="price">
+                        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>Actions</th>
+                        <td mat-cell *matCellDef="let row">
+                          <div class="actionContainer">
+                            <button
+                              mat-raised-button
+                              color="primary"
+                              (click)="updateProduct(row)"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              mat-raised-button
+                              color="warn"
+                              (click)="deleteProduct(row.id)"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </ng-container>
+          
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                  </div>
+            </mat-card-content>
+        </mat-card>
+
+        
+
+
+    </div>
+    <!-- column -->
+</div>
